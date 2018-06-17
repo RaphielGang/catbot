@@ -381,8 +381,6 @@ def markdown_help(bot: Bot, update: Update):
 def stats(bot: Bot, update: Update):
     update.effective_message.reply_text("Current stats:\n" + "\n".join([mod.__stats__() for mod in STATS]))
 
-
-
 # /ip is for private use
 __help__ = """
  - /id: get the current group id. If used by replying to a message, gets that user's id.
@@ -411,7 +409,6 @@ MD_HELP_HANDLER = CommandHandler("markdownhelp", markdown_help, filters=Filters.
 STATS_HANDLER = CommandHandler("stats", stats, filters=CustomFilters.sudo_filter)
 GDPR_HANDLER = CommandHandler("gdpr", gdpr, filters=Filters.private)
 
-
 dispatcher.add_handler(ID_HANDLER)
 dispatcher.add_handler(IP_HANDLER)
 # dispatcher.add_handler(TIME_HANDLER)
@@ -422,3 +419,4 @@ dispatcher.add_handler(ECHO_HANDLER)
 dispatcher.add_handler(MD_HELP_HANDLER)
 dispatcher.add_handler(STATS_HANDLER)
 dispatcher.add_handler(GDPR_HANDLER)
+
